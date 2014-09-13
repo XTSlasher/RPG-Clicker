@@ -20,7 +20,7 @@ public class Play extends BasicGameState {
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		ImageLoader.plrHud.draw(0, 0);
+		//ImageLoader.plrHud.draw(0, 0);
 		
 		g.drawString("Player Name: " + Player.getName(), 20, 25);
 		g.drawString("HP: " + Player.getHealth() + "/" + Player.getMaxHealth(), 295, 25);

@@ -9,7 +9,7 @@ public class ImageLoader {
 	public static Image exitGame;
 	
 	// HUD
-	public static Image plrHud;
+	//public static Image plrHud;
 	
 	// Characters {32, 32}
 	public static Image evan;
@@ -21,7 +21,7 @@ public class ImageLoader {
 	public static void initButtons() throws SlickException {
 		playGame = new Image("res/images/playGameButton.png");
 		exitGame = new Image("res/images/exitGameButton.png");
-		plrHud = new Image("res/images/playerStatusBar.png");
+		//plrHud = new Image("res/images/playerStatusBar.png");
 	}
 	
 	public static void initChars() throws SlickException {

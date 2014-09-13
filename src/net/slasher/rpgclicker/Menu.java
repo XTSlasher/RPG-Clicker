@@ -17,6 +17,8 @@ public class Menu extends BasicGameState {
 	}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		Database_Shop.initPotions();
+		Database_Shop.initWeapons();
 		ImageLoader.initButtons();
 	}
 	

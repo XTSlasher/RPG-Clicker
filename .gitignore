@@ -8,6 +8,11 @@
 *.war
 *.ear
 
+# Extra Folders and Files #
+/lib/
+*.project
+*.classpath
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
@@ -23,8 +28,7 @@ hs_err_pid*
 .LSOverride
 
 # Icon must ends with two \r.
-Icon
-
+Icon 
 # Thumbnails
 ._*
 
@@ -50,3 +54,4 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+/bin/

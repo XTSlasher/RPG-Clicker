@@ -32,24 +32,21 @@ public class Play extends BasicGameState {
 		g.drawString("Characters: " + Player.getChars(), 295, 100);
 		g.drawString("Level: " + Player.getLvl(), 464, 100);
 		g.drawString("XP: " + Player.getExp() + "/" + Player.getMaxExp(), 635, 100);
-		
-		/**
-		g.drawRect(50, 50, Game.charSize, Game.charSize*5);
-		for(int i=0;i<5;i++) {
-			g.drawLine(50, 50 + (Game.charSize*i), 50 + Game.charSize, 50 + (Game.charSize*i));
-		}
-		
-		// 50 + (32*i) + (1*(i+1))
-		ImageLoader.evan.draw(50, 50 + (32*0) + (1*1));
-		*/
 	}
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		if(!isPaused) {
 			Input in = gc.getInput();
 			
-			if(in.isKeyDown(Input.KEY_L)) {
+			if(in.isKeyPressed(Input.KEY_L)) {
 				Player.addExp(Player.getLvl());
+			}
+			if(in.isKeyPressed(Input.KEY_M)) {
+				Player.addMoney(100);
+			}
+			if(in.isKeyPressed(Input.KEY_I)) {
+				isPaused = true;
+				sbg.enterState(Game.inventory);
 			}
 			if(in.isKeyPressed(Input.KEY_ESCAPE)) {
 				isPaused = true;

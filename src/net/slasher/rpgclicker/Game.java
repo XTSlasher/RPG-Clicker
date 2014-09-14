@@ -15,6 +15,7 @@ public class Game extends StateBasedGame {
 	public static final int gameScreen = 1;
 	public static final int pauseMenu = 2;
 	public static final int shopMenu = 3;
+	public static final int inventory = 4;
 	
 	public Game(String gameName) throws SlickException {
 		super(gameName);
@@ -25,6 +26,7 @@ public class Game extends StateBasedGame {
 		this.addState(new Play(gameScreen));
 		this.addState(new Pause(pauseMenu));
 		this.addState(new Shop(shopMenu));
+		this.addState(new InventoryScreen(inventory));
 		
 		Database_Shop.initPotions();
 		Database_Shop.initWeapons();
@@ -35,6 +37,7 @@ public class Game extends StateBasedGame {
 		this.getState(gameScreen).init(gc, this);
 		this.getState(pauseMenu).init(gc, this);
 		this.getState(shopMenu).init(gc, this);
+		this.getState(inventory).init(gc, this);
 		
 		this.enterState(mainMenu);
 	}

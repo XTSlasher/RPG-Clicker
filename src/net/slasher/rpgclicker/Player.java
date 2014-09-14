@@ -18,6 +18,9 @@ public abstract class Player {
 		experience = xp;
 		maxExp = ((level*10)+(5*level)*level^2)+1;
 		level = lvl;
+		
+
+		Inventory.initInventory();
 	}
 	
 	public static void levelUp() {
@@ -31,12 +34,20 @@ public abstract class Player {
 		setMaxExp();
 	}
 	
-	public static void addExp(int plus) {
-		experience += plus;
+	public static void addExp(int gain) {
+		experience += gain;
 		
 		if(experience >= maxExp) {
 			levelUp();
 		}
+	}
+	
+	public static void addMoney(int plus) {
+		money += plus;
+	}
+	
+	public static void loseMoney(int lose) {
+		money -= lose;
 	}
 	
 	public static String getName() {

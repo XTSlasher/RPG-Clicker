@@ -40,7 +40,7 @@ public class Pause extends BasicGameState {
 			if(selected > 0) { selected -= 1; }
 		}
 		
-		if(in.isKeyPressed(Input.KEY_SPACE)) {
+		if(in.isKeyPressed(Input.KEY_SPACE) || in.isKeyPressed(Input.KEY_ENTER)) {
 			if(selected == 0) {
 				Play.isPaused = false;
 				sbg.enterState(Game.gameScreen);

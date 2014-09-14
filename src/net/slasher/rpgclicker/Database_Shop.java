@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 
 public class Database_Shop {
+	public static int cost = 0;
+	
 	// Health Potions
 	public static Potion[] potions = new Potion[100];
 	public static ArrayList<Potion> potionList = new ArrayList<Potion>();
@@ -79,10 +81,10 @@ public class Database_Shop {
 		System.out.println("");
 		System.out.println("");
 		System.out.println("Initializing Potions!");
-		potion = new Potion("Potion", "Heal +10 HP", 0);
-		Hpotion = new Potion("H-Potion", "Heal +17 HP", 1);
-		Mpotion = new Potion("M-Potion", "Heal +6% HP", 2);
-		Upotion = new Potion("U-Potion", "Heal +21% HP", 3);
+		potion = new Potion("Potion", "Heal +10 HP", 0, 10);
+		Hpotion = new Potion("H-Potion", "Heal +17 HP", 1, 23);
+		Mpotion = new Potion("M-Potion", "Heal +6% HP", 2, 41);
+		Upotion = new Potion("U-Potion", "Heal +21% HP", 3, 76);
 		
 		potionList.add(potion);
 		potionList.add(Hpotion);
@@ -106,5 +108,11 @@ public class Database_Shop {
 				System.out.println(potions[i].name);
 			}
 		}
+	}
+
+	public static int getCost(int bv, int lvl) {
+		cost = (bv*lvl)+(lvl*2)+bv;
+		
+		return cost;
 	}
 }

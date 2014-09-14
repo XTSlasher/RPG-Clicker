@@ -10,6 +10,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Play extends BasicGameState {
 	
 	public static boolean ting = false;
+
+	public static boolean isPaused = false;
 	
 	public Play(int id) {
 		
@@ -20,7 +22,7 @@ public class Play extends BasicGameState {
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		//ImageLoader.plrHud.draw(0, 0);
+		ImageLoader.plrHud.draw(0, 0);
 		
 		g.drawString("Player Name: " + Player.getName(), 20, 25);
 		g.drawString("HP: " + Player.getHealth() + "/" + Player.getMaxHealth(), 295, 25);
@@ -43,16 +45,23 @@ public class Play extends BasicGameState {
 	}
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		Input in = gc.getInput();
-		
-		if(in.isKeyDown(Input.KEY_L)) {
-			if(!ting) {
-				ting = true;
+		if(!isPaused) {
+			Input in = gc.getInput();
+			
+			if(in.isKeyDown(Input.KEY_L)) {
 				Player.addExp(Player.getLvl());
 			}
+			if(in.isKeyPressed(Input.KEY_ESCAPE)) {
+				isPaused = true;
+				sbg.enterState(Game.pauseMenu);
+			}
+			if(in.isKeyPressed(Input.KEY_S)) {
+				isPaused = true;
+				sbg.enterState(Game.shopMenu);
+			}
+			
+			in.clearKeyPressedRecord();
 		}
-		
-		ting = false;
 	}
 	
 	public int getID() {

@@ -25,6 +25,9 @@ public class Game extends StateBasedGame {
 		this.addState(new Play(gameScreen));
 		this.addState(new Pause(pauseMenu));
 		this.addState(new Shop(shopMenu));
+		
+		Database_Shop.initPotions();
+		Database_Shop.initWeapons();
 	}
 	
 	public void initStatesList(GameContainer gc) throws SlickException {

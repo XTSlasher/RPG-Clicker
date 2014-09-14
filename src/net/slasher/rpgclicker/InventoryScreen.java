@@ -3,7 +3,9 @@ package net.slasher.rpgclicker;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-public class InventoryScreen extends BasicGameState {		
+public class InventoryScreen extends BasicGameState {
+	
+	
 	public InventoryScreen(int id) {
 		
 	}

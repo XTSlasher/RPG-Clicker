@@ -18,6 +18,8 @@ public class Shop extends BasicGameState {
 	public static int cost = 0;
 	public static boolean inSubMenu = false;
 	public static boolean isBuying = false;
+	public static boolean cantBuy = false;
+	public static String status = "Not Enought Money";
 	
 	Font font;
 	TrueTypeFont ttf;
@@ -52,6 +54,9 @@ public class Shop extends BasicGameState {
 						ttf.drawString(550, 250, "Buying: x" + count);
 						ttf.drawString(550, 285, "Cost: " + (Database_Shop.getCost(Database_Shop.potionList.get(subSelected-1).bv, Player.getLvl()) * count));
 						ttf.drawString(625, 350, "BUY");
+						if(cantBuy) {
+							ttf.drawString(550, 385, status);
+						}
 						
 						ImageLoader.highLight.draw(550, 345);
 					}
@@ -147,14 +152,18 @@ public class Shop extends BasicGameState {
 					isBuying = false;
 					Player.loseMoney(cost);
 					cost = 0;
-					count = 0;
 					
 					if(selected == 0) {
 						Inventory.updatePotions(Database_Shop.potionList.get(subSelected-1), count);
 					}
 					if(selected == 1) {
 						Inventory.updateWeapons(Database_Shop.weaponList.get(subSelected-1), count);
-					}
+					}					
+
+					count = 1;
+					cantBuy = false;
+				} else {
+					cantBuy = true;
 				}
 			}
 		}
@@ -169,6 +178,7 @@ public class Shop extends BasicGameState {
 			} else if(inSubMenu && isBuying){
 				isBuying = false;
 				count = 1;
+				cantBuy = false;
 			}
 		}
 		

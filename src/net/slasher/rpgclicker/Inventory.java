@@ -28,14 +28,6 @@ public class Inventory {
 		}
 	}
 	
-	public static void getWeapons() {
-		for(int i=0;i<Database_Shop.weaponList.size();i++) {
-			int count = weapons.get(Database_Shop.weaponList.get(i));
-			
-			System.out.println(Database_Shop.weaponList.get(i).name + ": " + count);
-		}
-	}
-	
 	public static void updatePotions(Potion ptn, int count) {
 		int oldCount = potions.get(ptn);
 		int newCount = oldCount+count;
@@ -43,6 +35,14 @@ public class Inventory {
 		potions.put(ptn, newCount);
 		
 		getPotions();
+	}
+	
+	public static void getWeapons() {
+		for(int i=0;i<Database_Shop.weaponList.size();i++) {
+			int count = weapons.get(Database_Shop.weaponList.get(i));
+			
+			System.out.println(Database_Shop.weaponList.get(i).name + ": " + count);
+		}
 	}
 	
 	public static void updateWeapons(Weapon wep, int count) {

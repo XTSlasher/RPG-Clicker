@@ -33,7 +33,7 @@ public class Shop extends BasicGameState {
 		ttf = new TrueTypeFont(font, true);
 	}
 	
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {		
 		ImageLoader.shop.draw(0, 0);
 		
 		if(selected == 0) {	
@@ -42,24 +42,24 @@ public class Shop extends BasicGameState {
 			for(int i=0;i<Database_Shop.potionList.size();i++) {
 				g.drawString(i+1 + ") " + Database_Shop.potionList.get(i).name, 15, 100 + 40 + (35*i));
 				
-				g.drawString("Cost: " + Database_Shop.getCost(Database_Shop.potionList.get(i).bv, Player.getLvl()), 175, 100 + 40 + (35*i));
+				g.drawString("Cost: " + Database_Shop.getCost(Database_Shop.potionList.get(i).bv, Player.getLvl()), 175, 100 + 40 + (35*i));	
+			}
+			
+			if(inSubMenu) {
+				ImageLoader.ShighLight.draw(2, 100 + (35*subSelected));
 				
-				if(inSubMenu) {
-					ImageLoader.ShighLight.draw(2, 100 + (35*subSelected));
-					
-					ttf.drawString(15, 525, "Description: " + Database_Shop.potionList.get(subSelected-1).desc);
-					
-					if(isBuying) {
-						ttf.drawString(550, 215, Database_Shop.potionList.get(subSelected-1).name);
-						ttf.drawString(550, 250, "Buying: x" + count);
-						ttf.drawString(550, 285, "Cost: " + (Database_Shop.getCost(Database_Shop.potionList.get(subSelected-1).bv, Player.getLvl()) * count));
-						ttf.drawString(625, 350, "BUY");
-						if(cantBuy) {
-							ttf.drawString(550, 385, status);
-						}
-						
-						ImageLoader.highLight.draw(550, 345);
+				ttf.drawString(15, 525, "Description: " + Database_Shop.potionList.get(subSelected-1).desc);
+				
+				if(isBuying) {
+					ttf.drawString(550, 215, Database_Shop.potionList.get(subSelected-1).name);
+					ttf.drawString(550, 250, "Buying: x" + count);
+					ttf.drawString(550, 285, "Cost: " + (Database_Shop.getCost(Database_Shop.potionList.get(subSelected-1).bv, Player.getLvl()) * count));
+					ttf.drawString(625, 350, "BUY");
+					if(cantBuy) {
+						ttf.drawString(550, 385, status);
 					}
+					
+					ImageLoader.highLight.draw(550, 345);
 				}
 			}
 			
@@ -70,29 +70,31 @@ public class Shop extends BasicGameState {
 				g.drawString(i+1 + ") " + Database_Shop.weaponList.get(i).name, 15, 100 + 40 + (35*i));
 				
 				g.drawString("Cost: " + Database_Shop.getCost(Database_Shop.weaponList.get(i).bv, Player.getLvl()), 175, 100 + 40 + (35*i));
-
-				if(inSubMenu) {
-					ImageLoader.ShighLight.draw(2, 100 + (35*subSelected));
-					
-					ttf.drawString(15, 525, "Description: " + Database_Shop.weaponList.get(subSelected-1).desc);
-					
-					if(isBuying) {
-						ttf.drawString(550, 215, Database_Shop.weaponList.get(subSelected-1).name);
-						ttf.drawString(550, 250, "Buying: x" + count);
-						ttf.drawString(550, 285, "Cost: " + (Database_Shop.getCost(Database_Shop.weaponList.get(subSelected-1).bv, Player.getLvl()) * count));
-						ttf.drawString(625, 350, "BUY");
-						
-						ImageLoader.highLight.draw(550, 345);
+			}
+			
+			if(inSubMenu) {
+				ImageLoader.ShighLight.draw(2, 100 + (35*subSelected));
+				
+				ttf.drawString(15, 525, "Description: " + Database_Shop.potionList.get(subSelected-1).desc);
+				
+				if(isBuying) {
+					ttf.drawString(550, 215, Database_Shop.potionList.get(subSelected-1).name);
+					ttf.drawString(550, 250, "Buying: x" + count);
+					ttf.drawString(550, 285, "Cost: " + (Database_Shop.getCost(Database_Shop.potionList.get(subSelected-1).bv, Player.getLvl()) * count));
+					ttf.drawString(625, 350, "BUY");
+					if(cantBuy) {
+						ttf.drawString(550, 385, status);
 					}
+					
+					ImageLoader.highLight.draw(550, 345);
 				}
 			}
+			
 		} else if(selected == 2) {
 			ImageLoader.highLight.draw(400, 99);
 		} else if(selected == 3) {
 			ImageLoader.highLight.draw(600, 99);
 		}
-		
-		g.destroy();
 	}
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {		

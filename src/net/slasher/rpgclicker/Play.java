@@ -44,6 +44,9 @@ public class Play extends BasicGameState {
 			if(in.isKeyPressed(Input.KEY_M)) {
 				Player.addMoney(100);
 			}
+			if(in.isKeyPressed(Input.KEY_A)) {
+				Player.health -= 1;
+			}
 			if(in.isKeyPressed(Input.KEY_I)) {
 				isPaused = true;
 				sbg.enterState(Game.inventory);

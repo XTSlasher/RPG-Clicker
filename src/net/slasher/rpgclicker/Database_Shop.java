@@ -83,8 +83,8 @@ public class Database_Shop {
 		System.out.println("Initializing Potions!");
 		potion = new Potion("Potion", "Heal +10 HP", 0, 10, 10);
 		Hpotion = new Potion("H-Potion", "Heal +17 HP", 1, 17, 23);
-		Mpotion = new Potion("M-Potion", "Heal +30 HP", 2, 6, 41);
-		Upotion = new Potion("U-Potion", "Heal +50 HP", 3, 21, 76);
+		Mpotion = new Potion("M-Potion", "Heal +30 HP", 2, 30, 41);
+		Upotion = new Potion("U-Potion", "Heal +50 HP", 3, 50, 76);
 		
 		potionList.add(potion);
 		potionList.add(Hpotion);

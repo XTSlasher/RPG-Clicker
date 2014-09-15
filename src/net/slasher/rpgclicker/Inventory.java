@@ -2,6 +2,8 @@ package net.slasher.rpgclicker;
 
 import java.util.HashMap;
 
+import org.jnbt.IntTag;
+
 
 public class Inventory {
 	public static HashMap<Potion, Integer> potions = new HashMap<Potion, Integer>();
@@ -10,10 +12,18 @@ public class Inventory {
 	public static void initInventory() {
 		for(int i=0;i<Database_Shop.potionList.size();i++) {
 			potions.put(Database_Shop.potionList.get(i), 0);
+			
+			if(Database_Shop.potions[i] != null) {
+				Variables.potions[i] = new IntTag(Database_Shop.potions[i].name, 0);
+			}
 		}
 		
 		for(int i=0;i<Database_Shop.weaponList.size();i++) {
 			weapons.put(Database_Shop.weaponList.get(i), 0);
+			
+			if(Database_Shop.weapons[i] != null) {
+				Variables.weapons[i] = new IntTag(Database_Shop.weapons[i].getName(), 0);
+			}
 		}
 		
 		getPotions();

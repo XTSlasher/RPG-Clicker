@@ -35,8 +35,6 @@ public class Menu extends BasicGameState {
 		if((xpos > ((Game.width / 2) - 75) && (xpos < ((Game.width / 2) - 75) + 150)) && ((ypos > Game.height - (100 + 53)) && (ypos < Game.height - 100))) {
 			if(Mouse.isButtonDown(0)) {
 				String name = JOptionPane.showInputDialog(null, message, playerName);
-				
-				
 				plr = new User(name, 0, 10, 1, 1, 1, 0, 1);
 				
 				sbg.enterState(1);

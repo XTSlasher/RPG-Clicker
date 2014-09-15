@@ -46,14 +46,23 @@ public class Pause extends BasicGameState {
 				sbg.enterState(Game.gameScreen);
 			}
 			if(selected == 1) { 
-				
+				// Options
 			}
 			if(selected == 2) {
-				
+				try {
+					Save.save();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			if(selected == 3) {
 				System.exit(0);
 			}
+		}
+		
+		if(in.isKeyPressed(Input.KEY_ESCAPE)) {
+			Play.isPaused = false;
+			sbg.enterState(Game.gameScreen);
 		}
 		
 		in.clearKeyPressedRecord();

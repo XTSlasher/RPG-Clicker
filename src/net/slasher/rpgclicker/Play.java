@@ -35,6 +35,9 @@ public class Play extends BasicGameState {
 		
 		if(Player.getChars() == 1) {
 			ImageLoader.evan.draw(350, 350);
+		} else if(Player.getChars() == 2) {
+			ImageLoader.evan.draw(350, 350);
+			ImageLoader.lyra.draw(382, 350);
 		}
 	}
 	

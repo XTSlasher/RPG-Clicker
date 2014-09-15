@@ -7,29 +7,45 @@ public abstract class Player {
 	/** Player Name **/
 	public static String pName;
 	
-	public Player(String name, int cash, int hp, int atk, int def, int chars, int xp, int lvl) {
+	public Player(String name, int cash, int hp, int mhp, int atk, int def, int chars, int xp, int mxp, int lvl, boolean isNew) {
 		pName = name;
 		money = cash;
-		maxHealth = hp;
-		health = maxHealth;
+		if(mhp == 0) {
+			maxHealth = 10;
+		} else {
+			maxHealth = mhp;
+		}
+		if(hp == 0) {
+			health = maxHealth;
+		} else {
+			health = hp;
+		}
 		attack = atk;
 		defence = def;
 		characters = chars;
 		experience = xp;
-		maxExp = ((level*10)+(5*level)*level^2)+1;
+		if(mxp == 0) {
+			maxExp = ((level*10)+(5*level)*level^2)+1;
+		} else {
+			maxExp = mxp;
+		}
 		level = lvl;
 		
-
-		Inventory.initInventory();
+		if(isNew) {
+			Inventory.initInventoryNew();
+		} else {
+			Inventory.initInventoryLoad();
+		}
 	}
 	
 	public static void calcAtk() {
 		for(int i=0;i<Inventory.weapons.size();i++) {
 			int count = Inventory.weapons.get(Database_Shop.weapons[i]);
-			
 			int totalAtk = Database_Shop.weapons[i].getATK() * count;
 			
 			attack += totalAtk;
+			
+			System.out.println("Attack: " + attack);
 		}
 	}
 	

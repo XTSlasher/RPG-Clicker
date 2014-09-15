@@ -9,7 +9,11 @@ public class Inventory {
 	public static HashMap<Potion, Integer> potions = new HashMap<Potion, Integer>();
 	public static HashMap<Weapon, Integer> weapons = new HashMap<Weapon, Integer>();
 	
-	public static void initInventory() {
+	public static void initInventoryLoad() {
+		System.out.println("Loading Inventory!");
+	}
+	
+	public static void initInventoryNew() {
 		for(int i=0;i<Database_Shop.potionList.size();i++) {
 			potions.put(Database_Shop.potionList.get(i), 0);
 			
@@ -22,7 +26,7 @@ public class Inventory {
 			weapons.put(Database_Shop.weaponList.get(i), 0);
 			
 			if(Database_Shop.weapons[i] != null) {
-				Variables.weapons[i] = new IntTag(Database_Shop.weapons[i].getName(), 0);
+				Variables.weapons[i] = new IntTag(Database_Shop.weapons[i].name, 0);
 			}
 		}
 		
@@ -44,6 +48,14 @@ public class Inventory {
 		
 		potions.put(ptn, newCount);
 		
+		for(int i=0;i<Database_Shop.potionList.size();i++) {			
+			if(Database_Shop.potions[i] != null) {
+				if(Database_Shop.potions[i].name == ptn.getName()) {
+					Variables.potions[i] = new IntTag(Database_Shop.potions[i].name, newCount);
+				}
+			}
+		}
+		
 		getPotions();
 	}
 	
@@ -61,6 +73,14 @@ public class Inventory {
 		
 		weapons.put(wep, newCount);
 		
+		for(int i=0;i<Database_Shop.weaponList.size();i++) {
+			if(Database_Shop.weapons[i] != null) {
+				if(Database_Shop.weapons[i].getName() == wep.getName()) {
+					Variables.weapons[i] = new IntTag(Database_Shop.weapons[i].getName(), newCount);
+				}
+			}
+		}
+
 		getWeapons();
 	}
 }

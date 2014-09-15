@@ -10,7 +10,7 @@ public class Menu extends BasicGameState {
 	
 	Object message = "Please Input Desired Name";
 	Object playerName = "Player1";
-	User plr;
+	public static User plr;
 	
 	public Menu(int id) {
 		
@@ -34,8 +34,14 @@ public class Menu extends BasicGameState {
 		// Play Button
 		if((xpos > ((Game.width / 2) - 75) && (xpos < ((Game.width / 2) - 75) + 150)) && ((ypos > Game.height - (100 + 53)) && (ypos < Game.height - 100))) {
 			if(Mouse.isButtonDown(0)) {
-				String name = JOptionPane.showInputDialog(null, message, playerName);
-				plr = new User(name, 0, 10, 1, 1, 1, 0, 1);
+				if(Load.checkIfSave()) {
+					// Give Options to load or start over..
+					
+					Load.load();
+				} else {
+					String name = JOptionPane.showInputDialog(null, message, playerName);
+					plr = new User(name, 0, 10, 10, 1, 1, 1, 0, 0, 1, true);
+				}	
 				
 				sbg.enterState(1);
 			}

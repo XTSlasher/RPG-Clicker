@@ -10,6 +10,7 @@
 
 # Extra Folders and Files #
 /lib/
+/saves/
 *.project
 *.classpath
 

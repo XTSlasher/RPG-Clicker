@@ -5,8 +5,8 @@ import org.jnbt.StringTag;
 
 public class User extends Player {
 
-	public User(String name, int cash, int hp, int atk, int def, int chars, int xp, int lvl) {
-		super(name, cash, hp, atk, def, chars, xp, lvl);
+	public User(String name, int cash, int hp, int mhp, int atk, int def, int chars, int xp, int mxp, int lvl, boolean isNew) {
+		super(name, cash, hp, mhp, atk, def, chars, xp, mxp, lvl, isNew);
 		
 		Variables.playerName = new StringTag("PlayerName", name);
 		Variables.money = new IntTag("PlayerCash", cash);

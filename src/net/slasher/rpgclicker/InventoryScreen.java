@@ -11,6 +11,8 @@ public class InventoryScreen extends BasicGameState {
 	public static int subSelected = 1;
 	public static boolean inSubMenu = false;
 	
+	public static int[] totalAtk = {};
+	
 	Font font;
 	TrueTypeFont ttf;
 	
@@ -30,9 +32,9 @@ public class InventoryScreen extends BasicGameState {
 			ImageLoader.highLight.draw(0, 99);
 			
 			for(int i=0;i<Database_Shop.potionList.size();i++) {
-				g.drawString(i+1 + ") " + Database_Shop.potionList.get(i).name, 15, 100 + 40 + (35*i));
+				ttf.drawString(15, 100 + 40 + (35*i), i+1 + ") " + Database_Shop.potionList.get(i).name);
 				
-				g.drawString("Owned: " + Inventory.potions.get(Database_Shop.potionList.get(i)), 175, 100 + 40 + (35*i));
+				ttf.drawString(175, 100 + 40 + (35*i), "Owned: " + Inventory.potions.get(Database_Shop.potionList.get(i)));
 			}
 			
 			if(inSubMenu) {
@@ -45,16 +47,23 @@ public class InventoryScreen extends BasicGameState {
 			ImageLoader.highLight.draw(200, 99);
 			
 			for(int i=0;i<Database_Shop.weaponList.size();i++) {
-				g.drawString(i+1 + ") " + Database_Shop.weaponList.get(i).name, 15, 100 + 40 + (35*i));
+				ttf.drawString(15, 100 + 40 + (35*i), i+1 + ") " + Database_Shop.weaponList.get(i).name);
 				
-				g.drawString("Owned: " + Inventory.weapons.get(Database_Shop.weapons[i]), 175, 100 + 40 + (35*i));
+				ttf.drawString(175, 100 + 40 + (35*i), "Owned: " + Inventory.weapons.get(Database_Shop.weapons[i]));
 			}
 			
-			if(inSubMenu) {
-				ImageLoader.ShighLight.draw(2, 100 + (35*subSelected));
+			for(int i=0;i<Inventory.weapons.size();i++) {
+				int count = Inventory.weapons.get(Database_Shop.weapons[i]);
 				
-				ttf.drawString(15, 525, "Description: " + Database_Shop.weaponList.get(subSelected-1).desc);
+				int totalAtk = Database_Shop.weapons[i].getATK() * count;
+				
+				ttf.drawString(300, 100 + 40 + (35*i), "Total ATK: " + totalAtk);
 			}
+			
+			for(int i=0;i<5;i++) {
+				g.drawLine(300, 100 + 40 + (35*Inventory.weapons.size())-i, 450, 100 + 40 + (35*Inventory.weapons.size())-i);
+			}
+			ttf.drawString(300, 100 + 40 + (35*Inventory.weapons.size()), "ATK: " + Player.getAtk());
 			
 		} else if(selected == 2) {
 			ImageLoader.highLight.draw(400, 99);
@@ -112,7 +121,7 @@ public class InventoryScreen extends BasicGameState {
 					}
 				}
 			}
-			if(!inSubMenu) {
+			if(!inSubMenu && selected == 0) {
 				inSubMenu = true;
 			}
 		}

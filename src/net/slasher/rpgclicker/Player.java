@@ -23,6 +23,16 @@ public abstract class Player {
 		Inventory.initInventory();
 	}
 	
+	public static void calcAtk() {
+		for(int i=0;i<Inventory.weapons.size();i++) {
+			int count = Inventory.weapons.get(Database_Shop.weapons[i]);
+			
+			int totalAtk = Database_Shop.weapons[i].getATK() * count;
+			
+			attack += totalAtk;
+		}
+	}
+	
 	public static void levelUp() {
 		experience -= maxExp;
 		level += 1;

@@ -27,7 +27,7 @@ public class Play extends BasicGameState {
 		g.drawString("Player Name: " + Player.getName(), 20, 25);
 		g.drawString("HP: " + Player.getHealth() + "/" + Player.getMaxHealth(), 295, 25);
 		g.drawString("ATK: " + Player.getAtk(), 464, 25);
-		g.drawString("DEF: " + Player.getAtk(), 635, 25);
+		g.drawString("DEF: " + Player.getDef(), 635, 25);
 		g.drawString("Money: " + Player.getMoney(), 20, 100);
 		g.drawString("Characters: " + Player.getChars(), 295, 100);
 		g.drawString("Level: " + Player.getLvl(), 464, 100);

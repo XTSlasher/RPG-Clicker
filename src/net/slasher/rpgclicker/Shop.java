@@ -75,12 +75,12 @@ public class Shop extends BasicGameState {
 			if(inSubMenu) {
 				ImageLoader.ShighLight.draw(2, 100 + (35*subSelected));
 				
-				ttf.drawString(15, 525, "Description: " + Database_Shop.potionList.get(subSelected-1).desc);
+				ttf.drawString(15, 525, "Description: " + Database_Shop.weaponList.get(subSelected-1).desc);
 				
 				if(isBuying) {
-					ttf.drawString(550, 215, Database_Shop.potionList.get(subSelected-1).name);
+					ttf.drawString(550, 215, Database_Shop.weaponList.get(subSelected-1).name);
 					ttf.drawString(550, 250, "Buying: x" + count);
-					ttf.drawString(550, 285, "Cost: " + (Database_Shop.getCost(Database_Shop.potionList.get(subSelected-1).bv, Player.getLvl()) * count));
+					ttf.drawString(550, 285, "Cost: " + (Database_Shop.getCost(Database_Shop.weaponList.get(subSelected-1).bv, Player.getLvl()) * count));
 					ttf.drawString(625, 350, "BUY");
 					if(cantBuy) {
 						ttf.drawString(550, 385, status);
@@ -148,7 +148,12 @@ public class Shop extends BasicGameState {
 					isBuying = true;
 				}
 			} else if(inSubMenu && isBuying) {
-				cost = Database_Shop.getCost(Database_Shop.potionList.get(subSelected-1).bv, Player.getLvl()) * count;
+				if(selected == 0) {
+					cost = Database_Shop.getCost(Database_Shop.potionList.get(subSelected-1).bv, Player.getLvl()) * count;
+				}else if(selected == 1) {
+					cost = Database_Shop.getCost(Database_Shop.weaponList.get(subSelected-1).bv, Player.getLvl()) * count;
+				}
+				
 				
 				if(Player.getMoney() >= cost) {
 					isBuying = false;
@@ -164,6 +169,10 @@ public class Shop extends BasicGameState {
 
 					count = 1;
 					cantBuy = false;
+					
+					if(selected == 1) {
+						Player.calcAtk();
+					}
 				} else {
 					cantBuy = true;
 				}

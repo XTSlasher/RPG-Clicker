@@ -32,6 +32,10 @@ public class Play extends BasicGameState {
 		g.drawString("Characters: " + Player.getChars(), 295, 100);
 		g.drawString("Level: " + Player.getLvl(), 464, 100);
 		g.drawString("XP: " + Player.getExp() + "/" + Player.getMaxExp(), 635, 100);
+		
+		if(Player.getChars() == 1) {
+			ImageLoader.evan.draw(350, 350);
+		}
 	}
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {

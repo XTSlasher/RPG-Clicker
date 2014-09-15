@@ -53,6 +53,18 @@ public class Save {
 		}
 		out3.close();
 		
+		NBTOutputStream out4 = new NBTOutputStream(new FileOutputStream(new File(playerPath + "armours.dat")));
+		
+		for(int i=0;i<Variables.armours.length;i++) {
+			IntTag current = Variables.armours[i];
+			
+			if(current != null) {
+				System.out.println("Saving: " + current);
+				out4.writeTag(current);
+			}
+		}
+		out4.close();
+		
 		JOptionPane.showMessageDialog(null, "Save Complete!");
 	}
 }

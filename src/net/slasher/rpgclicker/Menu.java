@@ -35,9 +35,15 @@ public class Menu extends BasicGameState {
 		if((xpos > ((Game.width / 2) - 75) && (xpos < ((Game.width / 2) - 75) + 150)) && ((ypos > Game.height - (100 + 53)) && (ypos < Game.height - 100))) {
 			if(Mouse.isButtonDown(0)) {
 				if(Load.checkIfSave()) {
-					// Give Options to load or start over..
+					Object newGame = JOptionPane.showInputDialog(null, "Do you want to start a NEW game?!", "New Game?", JOptionPane.YES_NO_OPTION, null, new Object[]{"Yes",  "No"}, "No");
+					String choice = newGame.toString();
 					
-					Load.load();
+					if(choice == "Yes") {
+						String name = JOptionPane.showInputDialog(null, message, playerName);
+						plr = new User(name, 0, 10, 10, 1, 1, 1, 0, 0, 1, true);
+					} else {
+						Load.load();
+					}
 				} else {
 					String name = JOptionPane.showInputDialog(null, message, playerName);
 					plr = new User(name, 0, 10, 10, 1, 1, 1, 0, 0, 1, true);

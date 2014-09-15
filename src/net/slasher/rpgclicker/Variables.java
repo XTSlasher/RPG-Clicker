@@ -16,6 +16,7 @@ public class Variables {
 	public static IntTag level;
 	public static IntTag[] potions = new IntTag[100];
 	public static IntTag[] weapons = new IntTag[100];
+	public static IntTag[] armours = new IntTag[100];
 	
 	public static void showVariables() {
 		System.out.println(playerName);

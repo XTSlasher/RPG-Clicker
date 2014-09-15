@@ -29,8 +29,7 @@ public class Load {
 		loadPlayer();
 		loadPotions();
 		loadWeapons();
-		
-		//Variables.showVariables();
+		loadArmours();
 		Variables.setVariables();
 		
 		JOptionPane.showMessageDialog(null, "Loading Completed!");
@@ -85,15 +84,12 @@ public class Load {
 				Tag tag;
 				while((tag = in.readTag()) != null) {
 					tags.add(tag);
-					
-					System.out.println("Loading: " + tag);
 				}
 				in.close();
 			} catch(Exception e) {}
 			
 			for(int i=0;i<Database_Shop.potions.length;i++) {
-				IntTag loadingTag = (IntTag) getTag(tags, Database_Shop.potions[i].name);				
-				System.out.println("Setting: " + Database_Shop.potionList.get(i).getName() + " to " + loadingTag.getValue());
+				IntTag loadingTag = (IntTag) getTag(tags, Database_Shop.potions[i].name);
 				Inventory.potions.put(Database_Shop.potionList.get(i), loadingTag.getValue());
 			}
 		} catch(Exception e) {}
@@ -120,9 +116,35 @@ public class Load {
 			} catch(Exception e) {}
 			
 			for(int i=0;i<Database_Shop.weapons.length;i++) {		
-				IntTag loadingTag = (IntTag) getTag(tags, Database_Shop.weapons[i].name);				
-				System.out.println("Setting: " + Database_Shop.weaponList.get(i).getName() + " to " + loadingTag.getValue());
+				IntTag loadingTag = (IntTag) getTag(tags, Database_Shop.weapons[i].name);
 				Inventory.weapons.put(Database_Shop.weaponList.get(i), loadingTag.getValue());
+			}
+		} catch(Exception e) {}
+		
+	}
+	
+	public static void loadArmours() {
+		String playerPath = "saves/";
+		boolean fileFound = new File(playerPath + "armours.dat").exists();
+		
+		if(!fileFound) { return; }
+		
+		NBTInputStream in = null;
+		try {
+			in = new NBTInputStream(new FileInputStream(new File("saves/armours.dat")));
+			ArrayList<Tag> tags = new ArrayList<Tag>();
+			
+			try {
+				Tag tag;
+				while((tag = in.readTag()) != null) {
+					tags.add(tag);
+				}
+				in.close();
+			} catch(Exception e) {}
+			
+			for(int i=0;i<Database_Shop.armours.length;i++) {		
+				IntTag loadingTag = (IntTag) getTag(tags, Database_Shop.armours[i].name);
+				Inventory.armours.put(Database_Shop.armourList.get(i), loadingTag.getValue());
 			}
 		} catch(Exception e) {}
 		
@@ -131,7 +153,6 @@ public class Load {
 	public static Tag getTag(ArrayList<Tag> tags, String str) {
 		for(Tag tag:tags) {
 			if(tag.getName().equals(str)) {
-				System.out.println("Loading TAG: " + tag);
 				return tag;
 			}
 		}

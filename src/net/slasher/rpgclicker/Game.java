@@ -30,6 +30,7 @@ public class Game extends StateBasedGame {
 		
 		Database_Shop.initPotions();
 		Database_Shop.initWeapons();
+		Database_Shop.initArmour();
 	}
 	
 	public void initStatesList(GameContainer gc) throws SlickException {
@@ -47,7 +48,7 @@ public class Game extends StateBasedGame {
 		
 		try {
 			agc = new AppGameContainer(new Game(gameName));
-			agc.setDisplayMode(801, 601, false);
+			agc.setDisplayMode(800, 600, false);
 			agc.setShowFPS(false);
 			agc.start();
 		} catch(SlickException se) {

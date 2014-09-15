@@ -92,6 +92,30 @@ public class Shop extends BasicGameState {
 			
 		} else if(selected == 2) {
 			ImageLoader.highLight.draw(400, 99);
+			
+			for(int i=0;i<Database_Shop.armourList.size();i++) {
+				g.drawString(i+1 + ") " + Database_Shop.armourList.get(i).name, 15, 100 + 40 + (35*i));
+				
+				g.drawString("Cost: " + Database_Shop.getCost(Database_Shop.armourList.get(i).bv, Player.getLvl()), 175, 100 + 40 + (35*i));
+			}
+			
+			if(inSubMenu) {
+				ImageLoader.ShighLight.draw(2, 100 + (35*subSelected));
+				
+				ttf.drawString(15, 525, "Description: " + Database_Shop.armourList.get(subSelected-1).desc);
+				
+				if(isBuying) {
+					ttf.drawString(550, 215, Database_Shop.armourList.get(subSelected-1).name);
+					ttf.drawString(550, 250, "Buying: x" + count);
+					ttf.drawString(550, 285, "Cost: " + (Database_Shop.getCost(Database_Shop.armourList.get(subSelected-1).bv, Player.getLvl()) * count));
+					ttf.drawString(625, 350, "BUY");
+					if(cantBuy) {
+						ttf.drawString(550, 385, status);
+					}
+					
+					ImageLoader.highLight.draw(550, 345);
+				}
+			}
 		} else if(selected == 3) {
 			ImageLoader.highLight.draw(600, 99);
 		}
@@ -126,6 +150,11 @@ public class Shop extends BasicGameState {
 						subSelected += 1;
 					}
 				}
+				if(selected == 2) {
+					if(subSelected < Database_Shop.armourList.size()) {
+						subSelected += 1;
+					}
+				}
 			} else if(in.isKeyPressed(Input.KEY_UP)) {
 				if(selected == 0) {
 					if(subSelected > 1) {
@@ -134,6 +163,11 @@ public class Shop extends BasicGameState {
 				}
 				if(selected == 1) {
 					if(subSelected > 1) {
+						subSelected -= 1;
+					}
+				}
+				if(selected == 2) {
+					if(subSelected < Database_Shop.armourList.size()) {
 						subSelected -= 1;
 					}
 				}
@@ -152,8 +186,9 @@ public class Shop extends BasicGameState {
 					cost = Database_Shop.getCost(Database_Shop.potionList.get(subSelected-1).bv, Player.getLvl()) * count;
 				}else if(selected == 1) {
 					cost = Database_Shop.getCost(Database_Shop.weaponList.get(subSelected-1).bv, Player.getLvl()) * count;
+				}else if(selected == 2) {
+					cost = Database_Shop.getCost(Database_Shop.armourList.get(subSelected-1).bv, Player.getLvl()) * count;
 				}
-				
 				
 				if(Player.getMoney() >= cost) {
 					isBuying = false;
@@ -165,13 +200,19 @@ public class Shop extends BasicGameState {
 					}
 					if(selected == 1) {
 						Inventory.updateWeapons(Database_Shop.weaponList.get(subSelected-1), count);
-					}					
+					}
+					if(selected == 2) {
+						Inventory.updateArmour(Database_Shop.armourList.get(subSelected-1), count);
+					}
 
 					count = 1;
 					cantBuy = false;
 					
 					if(selected == 1) {
 						Player.calcAtk();
+					}
+					if(selected == 2) {
+						Player.calcDef();
 					}
 				} else {
 					cantBuy = true;

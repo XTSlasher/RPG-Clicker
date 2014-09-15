@@ -49,6 +49,17 @@ public abstract class Player {
 		}
 	}
 	
+	public static void calcDef() {
+		for(int i=0;i<Inventory.armours.size();i++) {
+			int count = Inventory.armours.get(Database_Shop.armours[i]);
+			int totalDef = Database_Shop.armours[i].getDEF() * count;
+			
+			defence += totalDef;
+			
+			System.out.println("Defence: " + defence);
+		}
+	}
+	
 	public static void levelUp() {
 		experience -= maxExp;
 		level += 1;

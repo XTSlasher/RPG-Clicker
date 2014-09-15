@@ -16,8 +16,6 @@ public class Pause extends BasicGameState {
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		
-		
 		ImageLoader.pause.draw(0, 0);
 		
 		if(selected == 0) {

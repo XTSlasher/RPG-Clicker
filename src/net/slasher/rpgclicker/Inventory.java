@@ -8,6 +8,7 @@ import org.jnbt.IntTag;
 public class Inventory {
 	public static HashMap<Potion, Integer> potions = new HashMap<Potion, Integer>();
 	public static HashMap<Weapon, Integer> weapons = new HashMap<Weapon, Integer>();
+	public static HashMap<Armour, Integer> armours = new HashMap<Armour, Integer>();
 	
 	public static void initInventoryLoad() {
 		System.out.println("Loading Inventory!");
@@ -30,8 +31,17 @@ public class Inventory {
 			}
 		}
 		
+		for(int i=0;i<Database_Shop.armourList.size();i++) {
+			armours.put(Database_Shop.armourList.get(i), 0);
+			
+			if(Database_Shop.armours[i] != null) {
+				Variables.armours[i] = new IntTag(Database_Shop.armours[i].name, 0);
+			}
+		}
+		
 		getPotions();
 		getWeapons();
+		getArmours();
 	}
 	
 	public static void getPotions() {
@@ -82,5 +92,30 @@ public class Inventory {
 		}
 
 		getWeapons();
+	}
+	
+	public static void getArmours() {
+		for(int i=0;i<Database_Shop.armourList.size();i++) {
+			int count = armours.get(Database_Shop.armourList.get(i));
+			
+			System.out.println(Database_Shop.armourList.get(i).name + ": " + count);
+		}
+	}
+	
+	public static void updateArmour(Armour arm, int count) {
+		int oldCount = armours.get(arm);
+		int newCount = oldCount+count;
+		
+		armours.put(arm, newCount);
+		
+		for(int i=0;i<Database_Shop.armourList.size();i++) {
+			if(Database_Shop.armours[i] != null) {
+				if(Database_Shop.armours[i].getName() == arm.getName()) {
+					Variables.armours[i] = new IntTag(Database_Shop.armours[i].getName(), newCount);
+				}
+			}
+		}
+
+		getArmours();
 	}
 }

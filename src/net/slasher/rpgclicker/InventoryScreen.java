@@ -42,7 +42,6 @@ public class InventoryScreen extends BasicGameState {
 				
 				ttf.drawString(15, 525, "Description: " + Database_Shop.potionList.get(subSelected-1).desc);
 			}
-			
 		} else if(selected == 1) {
 			ImageLoader.highLight.draw(200, 99);
 			
@@ -64,9 +63,27 @@ public class InventoryScreen extends BasicGameState {
 				g.drawLine(300, 100 + 40 + (35*Inventory.weapons.size())-i, 450, 100 + 40 + (35*Inventory.weapons.size())-i);
 			}
 			ttf.drawString(300, 100 + 40 + (35*Inventory.weapons.size()), "ATK: " + Player.getAtk());
-			
 		} else if(selected == 2) {
 			ImageLoader.highLight.draw(400, 99);
+			
+			for(int i=0;i<Database_Shop.armourList.size();i++) {
+				ttf.drawString(15, 100 + 40 + (35*i), i+1 + ") " + Database_Shop.armourList.get(i).name);
+				
+				ttf.drawString(175, 100 + 40 + (35*i), "Owned: " + Inventory.armours.get(Database_Shop.armours[i]));
+			}
+			
+			for(int i=0;i<Inventory.armours.size();i++) {
+				int count = Inventory.armours.get(Database_Shop.armours[i]);
+				
+				int totalDef = Database_Shop.armours[i].getDEF() * count;
+				
+				ttf.drawString(300, 100 + 40 + (35*i), "Total DEF: " + totalDef);
+			}
+			
+			for(int i=0;i<5;i++) {
+				g.drawLine(300, 100 + 40 + (35*Inventory.armours.size())-i, 450, 100 + 40 + (35*Inventory.armours.size())-i);
+			}
+			ttf.drawString(300, 100 + 40 + (35*Inventory.armours.size()), "DEF: " + Player.getDef());
 		} else if(selected == 3) {
 			ImageLoader.highLight.draw(600, 99);
 		}

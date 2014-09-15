@@ -28,6 +28,56 @@ public class Database_Shop {
 	public static Weapon broadSword;
 	public static Weapon greatSword;
 	
+	// Armour
+	public static Armour[] armours = new Armour[100];
+	public static ArrayList<Armour> armourList = new ArrayList<Armour>();
+	public static Armour cottonShirt;
+	public static Armour leatherVest;
+	public static Armour ironPlate;
+	public static Armour steelPlate;
+	public static Armour royalArmour;
+	public static Armour titaniumPlate;
+	
+	public static void initArmour() {
+		armourList.clear();
+		
+		System.out.println("");
+		System.out.println("");
+		System.out.println("Initializing Armour!");
+		cottonShirt = new Armour("Cotton Shirt", "100% Cotton.", 0, 1, 4);
+		leatherVest = new Armour("Leather Vest", "Eat moar chicken!", 1, 3, 7);
+		ironPlate = new Armour("Iron Plate", "Knight 'n Shinin' Armour.", 2, 7, 16);
+		steelPlate = new Armour("Steel Plate", "", 3, 11, 23);
+		royalArmour = new Armour("Royal Armour", "Feel like a king?", 4, 18, 33);
+		titaniumPlate = new Armour("Titanium Plate", "", 5, 25, 56);
+		
+		armourList.add(cottonShirt);
+		armourList.add(leatherVest);
+		armourList.add(ironPlate);
+		armourList.add(steelPlate);
+		armourList.add(royalArmour);
+		armourList.add(titaniumPlate);
+		
+		for(int i=0;i<armourList.size();i++) {
+			armours[i] = armourList.get(i);
+		}
+		
+		checkListArmour();
+		
+		System.out.println("");
+		System.out.println("");
+		System.out.println("Armour Setup Complete.");
+	}
+	
+	public static void checkListArmour() {
+		System.out.println("Checking Armour");
+		for(int i=0;i<armours.length;i++) {
+			if(armours[i] != null) {
+				System.out.println(i + ") " + armours[i].name);
+			}
+		}
+	}
+	
 	public static void initWeapons() {
 		weaponList.clear();
 		
@@ -70,7 +120,7 @@ public class Database_Shop {
 	public static void checkListWeapon() {		
 		for(int i=0;i<weapons.length;i++) {
 			if(weapons[i] != null) {
-				System.out.println(weapons[i].name);
+				System.out.println(i + ") " + weapons[i].name);
 			}
 		}
 	}
@@ -105,7 +155,7 @@ public class Database_Shop {
 	public static void checkListPotion() {		
 		for(int i=0;i<potions.length;i++) {
 			if(potions[i] != null) {
-				System.out.println(potions[i].name);
+				System.out.println(i + ") " + potions[i].name);
 			}
 		}
 	}
